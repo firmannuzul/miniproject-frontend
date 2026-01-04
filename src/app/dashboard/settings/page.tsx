@@ -1,18 +1,5 @@
 import { Setting } from "./components/setting";
 
-// function Settings() {
-//   return (
-//     <div>
-//       {/* <Navbar /> */}
-//       {/* <AvatarDemo/> */}
-//       <Setting />
-//       {/* <Footer /> */}
-//     </div>
-//   );
-// }
-
-// export default Settings;
-
 function Settings() {
   return (
     <div className="px-8 py-6">
@@ -24,4 +11,3 @@ function Settings() {
 }
 
 export default Settings;
-

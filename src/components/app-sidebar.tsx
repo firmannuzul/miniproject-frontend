@@ -55,40 +55,6 @@ type SidebarItem = {
   }[];
 };
 
-// Menu items.
-// const items = [
-//   {
-//     title: "Dashboard",
-//     url: "/",
-//     icon: Home,
-//   },
-//   {
-//     title: "Orders",
-//     url: "/orders",
-//     icon: ShoppingCart,
-//   },
-//   {
-//     title: "All events",
-//     url: "/all-events",
-//     icon: Calendar,
-//   },
-//   {
-//     title: "Tickets",
-//     url: "/tickets",
-//     icon: Ticket,
-//   },
-//   {
-//     title: "Vouchers",
-//     url: "/vouchers",
-//     icon: Gift,
-//   },
-//   {
-//     title: "Settings",
-//     url: "/settings",
-//     icon: Settings,
-//   },
-// ];
-
 const items: SidebarItem[] = [
   {
     title: "Dashboard",
@@ -100,7 +66,7 @@ const items: SidebarItem[] = [
     icon: ShoppingCart,
     children: [
       { title: "Order", url: "/dashboard/orders" },
-      { title: "Manual Payment", url: "/dashboard/orders/manual" },
+      // { title: "Manual Payment", url: "/dashboard/orders/manual" },
       { title: "Transactions", url: "/dashboard/orders/transactions" },
     ],
   },
@@ -112,21 +78,32 @@ const items: SidebarItem[] = [
       { title: "Create Event", url: "/dashboard/all-events/create" },
     ],
   },
+  // {
+  //   title: "Tickets",
+  //   icon: Ticket,
+  //   children: [
+  //     { title: "Ticket", url: "/dashboard/tickets" },
+  //     { title: "Create Ticket", url: "/dashboard/tickets/create" },
+  //   ],
+  // },
+
   {
     title: "Tickets",
     icon: Ticket,
-    children: [
-      { title: "Ticket", url: "/dashboard/tickets" },
-      { title: "Create Ticket", url: "/dashboard/tickets/create" },
-    ],
+    url: "/dashboard",
   },
+  // {
+  //   title: "Vouchers",
+  //   icon: Gift,
+  //   children: [
+  //     { title: "Voucher", url: "/dashboard/vouchers" },
+  //     { title: "Create Voucher", url: "/dashboard/vouchers/create" },
+  //   ],
+  // },
   {
     title: "Vouchers",
     icon: Gift,
-    children: [
-      { title: "Voucher", url: "/dashboard/vouchers" },
-      { title: "Create Voucher", url: "/dashboard/vouchers/create" },
-    ],
+    url: "/dashboard",
   },
   {
     title: "Settings",
@@ -150,7 +127,7 @@ export function AppSidebar() {
           <img
             src="/logoevent.png"
             alt="logo"
-            className="w-[140px] h-[30px] md:h-[30px] md:w-[160px] mb-8 mt-5"
+            className="w-[140px] h-[30px] md:h-[30px] md:w-40 mb-8 mt-5"
           />
 
           <SidebarGroupLabel className="text-xl mb-5">
@@ -190,7 +167,6 @@ export function AppSidebar() {
                       </CollapsibleContent>
                     </Collapsible>
                   ) : (
-                    // === ITEM TANPA SUB MENU (DASHBOARD) ===
                     <SidebarMenuButton asChild>
                       <Link href={item.url!}>
                         <item.icon />
@@ -207,12 +183,6 @@ export function AppSidebar() {
       <SidebarFooter>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            {/* <SidebarMenuButton>
-              <User2 />
-              username
-              <ChevronUp className="ml-auto" />
-            </SidebarMenuButton> */}
-
             <SidebarMenuButton>
               <User2 />
 

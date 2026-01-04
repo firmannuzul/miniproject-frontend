@@ -25,26 +25,6 @@ type DashboardSummary = {
   }[];
 };
 
-// const chartData = [
-//   { month: "January", desktop: 186, mobile: 80 },
-//   { month: "February", desktop: 305, mobile: 200 },
-//   { month: "March", desktop: 237, mobile: 120 },
-//   { month: "April", desktop: 73, mobile: 190 },
-//   { month: "May", desktop: 209, mobile: 130 },
-//   { month: "June", desktop: 214, mobile: 140 },
-// ];
-
-// const chartConfig = {
-//   desktop: {
-//     label: "Desktop",
-//     color: "#2563eb",
-//   },
-//   mobile: {
-//     label: "Mobile",
-//     color: "#60a5fa",
-//   },
-// } satisfies ChartConfig;
-
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { IoTicketOutline } from "react-icons/io5";
 import { PiConfetti } from "react-icons/pi";
@@ -55,19 +35,6 @@ function Content() {
   // 🔑 AMBIL TOKEN (METODE LO)
   const token =
     typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
-
-  // const {
-  //   data: me,
-  //   isLoading,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["me"],
-  //   enabled: !!token, // ⬅️ KUNCI UTAMA
-  //   queryFn: async () => {
-  //     const res = await axiosInstance.get("/users/me");
-  //     return res.data;
-  //   },
-  // });
 
   const {
     data: me,
@@ -107,19 +74,10 @@ function Content() {
     queryKey: ["my-coupons"],
     enabled: !!token,
     queryFn: async () => {
-      // ⬅️ SESUAIKAN ENDPOINT BACKEND LO
       const res = await axiosInstance.get("/users/me/coupons");
-      return res.data; // asumsi array
+      return res.data;
     },
   });
-
-  /* ======================
-     RENDER GUARDS
-  ======================= */
-  // if (!token) return <p className="p-4">Not authenticated</p>;
-  // if (isLoading) return <p className="p-4">Loading...</p>;
-  // if (error) return <p className="p-4">Unauthorized</p>;
-  // if (!me) return null;
 
   if (!token) return <p className="p-4">Not authenticated</p>;
   if (meLoading || couponLoading) return <p className="p-4">Loading...</p>;
@@ -135,22 +93,6 @@ function Content() {
   const totalCoupons = coupons?.length ?? 0;
   const activeCoupons = coupons?.filter((c: any) => !c.is_used).length ?? 0;
 
-  // const {
-  //   data: me,
-  //   isLoading,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["me"],
-  //   queryFn: async () => {
-  //     const res = await axiosInstance.get("/users/me");
-  //     return res.data;
-  //   },
-  // });
-
-  // if (isLoading) return <p>Loading...</p>;
-  // if (error) return <p>Unauthorized / Error loading user</p>;
-  // if (!me) return null;
-
   const skills = [
     "Total Revenue",
     "Total Events",
@@ -158,12 +100,6 @@ function Content() {
     "Total Vouchers",
   ];
 
-  // const indexContent = [
-  //   "Total dadsa",
-  //   "Total dsa",
-  //   "Total Tickets",
-  //   "Total Vouchers",
-  // ];
   const indexContent = [
     `Rp ${dashboard.totalRevenue.toLocaleString("id-ID")}`,
     dashboard.totalEvents.toString(),
@@ -191,19 +127,9 @@ function Content() {
     <IoTicketOutline className="text-3xl" />,
     <RiCouponLine className="text-3xl" />,
   ];
-  // if (isLoading) return <p>Loading...</p>;
 
   return (
-    // <div className="w-full space-y-8">
-    // <div className="w-full space-y-8">
     <div className="w-full space-y-8 px-4 sm:px-6 lg:px-8 xl:px-12">
-      {/* <div className="p-4 border rounded">
-        <p>Name: {me.name}</p>
-        <p>Active Points: {me.active_points}</p>
-        <p>Total Balance: {me.point_balance}</p>
-        <p>Total Coupons: {totalCoupons}</p>
-      </div> */}
-
       <div className="grid grid-cols-12 gap-6">
         {/* KIRI — USER INFO */}
         <div className="col-span-12 md:col-span-6 border rounded-lg p-4 space-y-1">
@@ -239,8 +165,6 @@ function Content() {
 
       <p className=" text-3xl md:text-3xl mt-4">Dashboard</p>
 
-      {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-8"> */}
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {skills.map((skill, index) => {
           return (
@@ -264,21 +188,6 @@ function Content() {
               config={chartConfig}
               className="min-h-[400px] w-full"
             >
-              {/* <BarChart accessibilityLayer data={chartData}>
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <ChartLegend content={<ChartLegendContent />} />
-                <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-                <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-              </BarChart> */}
-
               <BarChart data={chartData}>
                 <CartesianGrid vertical={false} />
                 <XAxis

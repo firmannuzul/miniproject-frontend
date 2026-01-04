@@ -12,7 +12,7 @@ function Navbar() {
       <img
         src="/logoevent.png"
         alt="logo"
-        className="w-[140px] h-[30px] md:h-[30px] md:w-[160px]"
+        className="w-[140px] h-[30px] md:h-[30px] md:w-40"
       />
 
       <div className="hidden md:flex gap-4 text-xl">

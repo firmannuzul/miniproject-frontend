@@ -9,11 +9,9 @@ export default async function DashboardLayout({
 }) {
   const session = await auth();
 
-  // ❌ BELUM LOGIN → STOP TOTAL
   if (!session) {
     redirect("/login");
   }
 
-  // ✅ SUDAH LOGIN
   return <DashboardShell>{children}</DashboardShell>;
 }

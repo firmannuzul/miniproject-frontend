@@ -5,7 +5,6 @@ import { DataTableTicket } from "./components/ticket";
 function Tickets() {
   return (
     <div>
-      {/* <Navbar /> */}
       <DataTableTicket />
       <Footer />
     </div>

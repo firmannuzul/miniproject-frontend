@@ -1,8 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 
-import { Bar, BarChart, CartesianGrid } from "recharts"
-
 import {
   Field,
   FieldError,
@@ -22,22 +20,6 @@ import { toast } from "sonner";
 import z from "zod";
 
 const formSchema = z.object({
-  // event  : z
-  //   .string()
-  //   .nonempty("Event is required")
-  //   .min(5, "Event must be at least 5 characters."),
-  // code: z
-  //   .string()
-  //   .nonempty("Event is required")
-  //   .min(3, "Code must be at least 3 characters."),
-  // value: z
-  //   .string()
-  //   .nonempty("Value is required")
-  //   .min(5, "Description must be at least 10 characters."),
-  // limit: z
-  //   .string()
-  //   .nonempty("Limit is required")
-  //   .min(5, "Content must be at least 10 characters."),
   event_id: z
     .string()
     .nonempty("Event is required")
@@ -64,10 +46,6 @@ export default function CreateVoucher() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      // event  : "",
-      // code: "",
-      // value: "",
-      // limit: "",
       event_id: "",
       code_voucher: "",
       discount_percentage: "",
@@ -86,25 +64,17 @@ export default function CreateVoucher() {
     mutationFn: async (data: z.infer<typeof formSchema>) => {
       const formData = new FormData();
 
-      // formData.append("event", data.event);
-      // formData.append("code", data.code);
-      // formData.append("value", data.value);
-      // formData.append("limit", data.limit);
       formData.append("event_id", data.event_id);
       formData.append("code_voucher", data.code_voucher);
       formData.append("discount_percentage", data.discount_percentage);
       formData.append("max_discount_amount", data.max_discount_amount);
 
-      // await axiosInstance.post(`/blogs/`, formData, {
-      //   headers: { Authorization: `Bearer ${session.data?.user.accessToken}` },
-      // });
       await axiosInstance.post(`/vouchers/`, formData, {
         headers: { Authorization: `Bearer ${session.data?.user.accessToken}` },
       });
     },
     onSuccess: () => {
       toast.success("Create voucher success");
-      // queryClient.invalidateQueries({ queryKey: ["blogs"] });
       queryClient.invalidateQueries({ queryKey: ["vouchers"] });
       router.push("/");
     },
@@ -123,26 +93,6 @@ export default function CreateVoucher() {
         <FieldGroup>
           <FieldLegend>Create Voucher</FieldLegend>
 
-          {/* <Controller
-            name="event"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="event">
-                  Event <span className="text-red-500">*</span>
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="event"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="Event"
-                />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          /> */}
           <Controller
             name="event_id"
             control={form.control}
@@ -163,47 +113,6 @@ export default function CreateVoucher() {
               </Field>
             )}
           />
-
-          {/* <Controller
-            name="code"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="code">
-                  Code <span className="text-red-500">*</span>
-                </FieldLabel>
-
-                <div className="flex gap-2">
-                  <Input
-                    {...field}
-                    id="code"
-                    readOnly
-                    required
-                    aria-required="true"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Auto generated"
-                  />
-
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() =>
-                      form.setValue("code", generateVoucherCode(), {
-                        shouldValidate: true,
-                        shouldDirty: true,
-                      })
-                    }
-                  >
-                    Generate
-                  </Button>
-                </div>
-
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          /> */}
 
           <Controller
             name="code_voucher"
@@ -246,27 +155,6 @@ export default function CreateVoucher() {
             )}
           />
 
-          {/* <Controller
-            name="value"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="value">
-                  Value <span className="text-red-500">*</span>
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="value"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="Value"
-                />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          /> */}
-
           <Controller
             name="discount_percentage"
             control={form.control}
@@ -287,27 +175,6 @@ export default function CreateVoucher() {
               </Field>
             )}
           />
-
-          {/* <Controller
-            name="limit"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="limit">
-                  Limit <span className="text-red-500">*</span>
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="limit"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="Limit"
-                />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          /> */}
 
           <Controller
             name="max_discount_amount"
@@ -340,4 +207,3 @@ export default function CreateVoucher() {
     </div>
   );
 }
-

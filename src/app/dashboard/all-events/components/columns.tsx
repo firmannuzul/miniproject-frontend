@@ -28,12 +28,6 @@ export const columns: ColumnDef<EventRow>[] = [
         height={40}
         className="rounded-md object-cover"
       />
-      // <Image
-      //   src={row.original.image}
-      //   alt="event"
-      //   fill
-      //   className="rounded-md object-cover"
-      // />
     ),
   },
   {
@@ -84,7 +78,3 @@ export const columns: ColumnDef<EventRow>[] = [
     ),
   },
 ];
-
-
-
-

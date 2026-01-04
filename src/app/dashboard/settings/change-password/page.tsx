@@ -1,85 +1,21 @@
-// "use client";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Field,
-//   FieldDescription,
-//   FieldGroup,
-//   FieldLabel,
-//   FieldLegend,
-//   FieldSet,
-// } from "@/components/ui/field";
-// import { Input } from "@/components/ui/input";
-
-// export default function ChangePassword() {
-//   return (
-//     <div className="w-3xl">
-//       <form>
-//         <FieldGroup>
-//           <FieldSet>
-//             <FieldLegend>Change Password</FieldLegend>
-//             <FieldDescription>Manage your passwords settings.</FieldDescription>
-//             <FieldGroup>
-//               <Field>
-//                 <FieldLabel htmlFor="checkout-7j9-card-name-43j">
-//                   Current Password
-//                 </FieldLabel>
-//                 <Input
-//                   id="checkout-7j9-card-name-43j"
-//                   placeholder="Current Password"
-//                   required
-//                 />
-//               </Field>
-//               <Field>
-//                 <FieldLabel htmlFor="checkout-7j9-card-number-uw1">
-//                   New Password
-//                 </FieldLabel>
-//                 <Input
-//                   id="checkout-7j9-card-number-uw1"
-//                   placeholder="New Password"
-//                   required
-//                 />
-//               </Field>
-//               <Field>
-//                 <FieldLabel htmlFor="checkout-7j9-card-number-uw1">
-//                   Confirm New Password
-//                 </FieldLabel>
-//                 <Input
-//                   id="checkout-7j9-card-number-uw1"
-//                   placeholder="Confirm New Password"
-//                   required
-//                 />
-//               </Field>
-//             </FieldGroup>
-//           </FieldSet>
-//           {/* <FieldSeparator /> */}
-
-//           <Field orientation="horizontal">
-//             <Button type="submit">Save</Button>
-//           </Field>
-//         </FieldGroup>
-//       </form>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
   FieldLegend,
   FieldSet,
-  FieldError,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { axiosInstance } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Eye, EyeOff } from "lucide-react";
 
 export default function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -148,17 +84,6 @@ export default function ChangePassword() {
             </FieldDescription>
 
             <FieldGroup>
-              {/* <Field>
-                <FieldLabel>Current Password</FieldLabel>
-                <Input
-                  type="password"
-                  placeholder="Current password"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                  required
-                />
-              </Field> */}
-
               <Field>
                 <FieldLabel>Current Password</FieldLabel>
                 <div className="relative">
@@ -176,17 +101,6 @@ export default function ChangePassword() {
                 </div>
               </Field>
 
-              {/* <Field>
-                <FieldLabel>New Password</FieldLabel>
-                <Input
-                  type="password"
-                  placeholder="New password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  required
-                />
-              </Field> */}
-
               <Field>
                 <FieldLabel>New Password</FieldLabel>
                 <div className="relative">
@@ -203,26 +117,6 @@ export default function ChangePassword() {
                   />
                 </div>
               </Field>
-
-              {/* <Field data-invalid={passwordMismatch}>
-                <FieldLabel>Confirm New Password</FieldLabel>
-                <Input
-                  type="password"
-                  placeholder="Confirm new password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-                {passwordMismatch && (
-                  <FieldError
-                    errors={[
-                      {
-                        message: "Password confirmation does not match",
-                      },
-                    ]}
-                  />
-                )}
-              </Field> */}
 
               <Field data-invalid={passwordMismatch}>
                 <FieldLabel>Confirm New Password</FieldLabel>

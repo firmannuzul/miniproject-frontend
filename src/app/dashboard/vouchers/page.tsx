@@ -5,7 +5,6 @@ import { DataTableVoucher } from "./components/voucher";
 function Vouchers() {
   return (
     <div>
-      {/* <Navbar /> */}
       <DataTableVoucher />
       <Footer />
     </div>
