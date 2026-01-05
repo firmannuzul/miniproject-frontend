@@ -466,6 +466,7 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -568,6 +569,13 @@ function Content() {
   const totalCoupons = coupons?.length ?? 0;
   const activeCoupons = coupons?.filter((c) => !c.is_used).length ?? 0;
 
+  const indexLogo = [
+    <HiOutlineCurrencyDollar key="rev" className="text-3xl" />,
+    <PiConfetti key="evt" className="text-3xl" />,
+    <IoTicketOutline key="tic" className="text-3xl" />,
+    <RiCouponLine key="vou" className="text-3xl" />,
+  ];
+
   const chartData = dashboard.revenueByMonth.map((item) => ({
     month: item.month,
     revenue: item.revenue,
@@ -620,6 +628,7 @@ function Content() {
       {/* DASHBOARD */}
       <p className="text-3xl mt-4">Dashboard</p>
 
+      {/* STATS CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <Card
           title="Total Revenue"
