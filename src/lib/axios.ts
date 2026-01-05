@@ -28,7 +28,7 @@
 
 
 
-import axios from "axios";
+import axios from "axios"; //DIPAKE
 import { getSession } from "next-auth/react";
 
 export const axiosInstance = axios.create({
@@ -54,7 +54,6 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 
 
 // import axios from "axios";
